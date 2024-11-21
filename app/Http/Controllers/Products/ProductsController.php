@@ -8,6 +8,7 @@ use App\Models\Product\Product;
 use Auth;
 use App\Models\Product\Cart;
 use Redirect;
+use Session;
 
 class ProductsController extends Controller
 {
@@ -46,4 +47,55 @@ class ProductsController extends Controller
 
         return Redirect::route('product.single', $id)->with(['success' => "product added to cart successfully"] );
     }
+
+    public function cart() {
+
+        $cartProducts = Cart::where('user_id', Auth::user()->id)
+        ->orderBy('id', 'desc')
+        ->get();
+
+
+        $totalPrice = cart::where('user_id', Auth::user()->id)
+        ->sum('price');
+
+        return view('products.cart', compact('cartProducts', 'totalPrice'));
+    }
+
+    public function deleteProductCart($id) {
+
+        $deleteProductCart = Cart::where('pro_id', $id)
+        ->where('user_id', Auth::user()->id);
+
+        $deleteProductCart->delete();
+
+        if($deleteProductCart){
+            return Redirect::route('cart')->with(['delete' => "product delete from cart successfully"] );
+        }
+    }
+
+    public function prepareCheckout(Request $request) {
+
+        $value = $request->price;
+
+
+        $price = Session::put('price', $value);
+
+        $newPrice = Session::get($price);
+
+        if($newPrice > 0){
+            return Redirect::route('checkout');
+        }
+    }
+
+    public function checkout() {
+
+        echo "welcome checkout";
+
+        // if($deleteProductCart){
+        //     return Redirect::route('cart')->with(['delete' => "product delete from cart successfully"] );
+        // }
+    }
+
+
+
 }

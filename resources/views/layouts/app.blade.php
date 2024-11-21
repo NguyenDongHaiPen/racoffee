@@ -115,7 +115,7 @@
                         <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 
                         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                        <li class="nav-item cart"><a href="cart.html" class="nav-link"><span
+                        <li class="nav-item cart"><a href="{{ route('cart') }}" class="nav-link"><span
                                     class="icon icon-shopping_cart"></span></a>
                             @guest
                                 @if (Route::has('login'))
