@@ -9,6 +9,8 @@ use Auth;
 use App\Models\Product\Cart;
 use Redirect;
 use Session;
+use App\Models\Product\Order;
+
 
 class ProductsController extends Controller
 {
@@ -89,13 +91,21 @@ class ProductsController extends Controller
 
     public function checkout() {
 
-        echo "welcome checkout";
 
-        // if($deleteProductCart){
-        //     return Redirect::route('cart')->with(['delete' => "product delete from cart successfully"] );
-        // }
+
+            return view('products.checkout');
+
+
     }
 
+    public function storeCheckout(Request $request){
+
+        $checkout = Order::create($request->all());
+
+        echo "welcome to paypal payment";
+
+        // return Redirect::route('product.single', $id)->with(['success' => "product added to cart successfully"] );
+    }
 
 
 }

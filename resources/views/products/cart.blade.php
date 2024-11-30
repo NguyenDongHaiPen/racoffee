@@ -101,7 +101,7 @@
                         @if($cartProducts->count() > 0)
                             <form method="POST" action="{{ route('prepare.checkout') }}">
                                 @csrf
-                                <input name="price" type="text" value="{{ $totalPrice }}">
+                                <input name="price" type="hidden" value="{{ $totalPrice }}">
                                 <button type="submit" name="submit" class="btn btn-primary py-3 px-4">Proceed to Checkout</button>
                             </form>
                         @else
