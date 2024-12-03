@@ -41,7 +41,6 @@ Route::get('products/pay', [App\Http\Controllers\Products\ProductsController::cl
 Route::get('products/success', [App\Http\Controllers\Products\ProductsController::class, 'success'])->name('products.pay.success')->middleware('check.for.price');
 
 
-//Middleware
-// Route::middleware('check.for.price')->get('/products/checkout', [ProductsController::class, 'checkout']);
-// Route::middleware('check.for.price')->post('/products/pay', [ProductsController::class, 'pay']);
-// Route::middleware('check.for.price')->get('/products/success', [ProductsController::class, 'success']);
+Route::post('products/booking', [App\Http\Controllers\Products\ProductsController::class, 'BookTables'])->name('booking.tables');
+
+

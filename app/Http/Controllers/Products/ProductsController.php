@@ -10,6 +10,7 @@ use App\Models\Product\Cart;
 use Redirect;
 use Session;
 use App\Models\Product\Order;
+use App\Models\Product\Booking;
 
 
 class ProductsController extends Controller
@@ -128,4 +129,20 @@ class ProductsController extends Controller
 
         }
     }
+
+    public function BookTables(Request $request) {
+
+        if ($request->date > date('m/d/Y')) {
+            $bookTables = Booking::create($request->all());
+
+            if($bookTables){
+                return Redirect::route('home')->with(['booking' => "Thank you for your booking! Your reservation has been successfully confirmed. We look forward to serving you!"] );
+
+            }
+        } else {
+            return Redirect::route('home')->with(['date' => "We noticed the date you chose has already gone by. Please pick a valid date to continue."] );
+
+        }
+    }
+
 }

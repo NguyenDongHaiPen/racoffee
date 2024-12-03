@@ -55,7 +55,16 @@
             </div>
         </div>
     </section>
-
+    <div class="container">
+        @if (Session::has('date'))
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('date') }}</p>
+        @endif
+    </div>
+    <div class="container">
+        @if (Session::has('booking'))
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('booking') }}</p>
+        @endif
+    </div>
     <section class="ftco-intro">
         <div class="container-wrap">
             <div class="wrap d-md-flex align-items-xl-end">
@@ -84,40 +93,45 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="book p-4">
                     <h3>Book a Table</h3>
-                    <form action="#" class="appointment-form">
+                    <form action="{{ route('booking.tables') }}" method="POST" class="appointment-form">
+                        @csrf
                         <div class="d-md-flex">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="First Name">
+                                <input type="text" name="first_name" class="form-control" placeholder="First Name">
                             </div>
                             <div class="form-group ml-md-4">
-                                <input type="text" class="form-control" placeholder="Last Name">
+                                <input type="text" name="last_name" class="form-control" placeholder="Last Name">
                             </div>
                         </div>
                         <div class="d-md-flex">
                             <div class="form-group">
                                 <div class="input-wrap">
                                     <div class="icon"><span class="ion-md-calendar"></span></div>
-                                    <input type="text" class="form-control appointment_date" placeholder="Date">
+                                    <input type="text" name="date" class="form-control appointment_date" placeholder="Date">
                                 </div>
                             </div>
                             <div class="form-group ml-md-4">
                                 <div class="input-wrap">
                                     <div class="icon"><span class="ion-ios-clock"></span></div>
-                                    <input type="text" class="form-control appointment_time" placeholder="Time">
+                                    <input type="text" name="time" class="form-control appointment_time" placeholder="Time">
                                 </div>
+
+                                    <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" class="form-control appointment_time">
+
                             </div>
                             <div class="form-group ml-md-4">
-                                <input type="text" class="form-control" placeholder="Phone">
+                                <input type="text" name="phone" class="form-control" placeholder="Phone">
                             </div>
                         </div>
                         <div class="d-md-flex">
                             <div class="form-group">
-                                <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
+                                <textarea id="" name="message" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
                             </div>
                             <div class="form-group ml-md-4">
-                                <input type="submit" value="Appointment" class="btn btn-white py-3 px-4">
+                                <input type="submit" name="submit" value="Book" class="btn btn-white py-3 px-4">
                             </div>
                         </div>
                     </form>
