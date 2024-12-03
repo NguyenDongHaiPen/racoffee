@@ -102,34 +102,56 @@
                             <div class="form-group">
                                 <input type="text" name="first_name" class="form-control" placeholder="First Name">
                             </div>
+                            @if ($errors->has('first_name'))
+                                <p class="alert alert-success">{{ $errors->first('first_name') }}</p>
+                            @endif
+
                             <div class="form-group ml-md-4">
                                 <input type="text" name="last_name" class="form-control" placeholder="Last Name">
                             </div>
+                            @if ($errors->has('last_name'))
+                                <p class="alert alert-success">{{ $errors->first('last_name') }}</p>
+                            @endif
                         </div>
                         <div class="d-md-flex">
                             <div class="form-group">
                                 <div class="input-wrap">
                                     <div class="icon"><span class="ion-md-calendar"></span></div>
-                                    <input type="text" name="date" class="form-control appointment_date" placeholder="Date">
+                                    <input type="text" name="date" class="form-control appointment_date"
+                                        placeholder="Date">
                                 </div>
+                                @if ($errors->has('date'))
+                                    <p class="alert alert-success">{{ $errors->first('date') }}</p>
+                                @endif
                             </div>
                             <div class="form-group ml-md-4">
                                 <div class="input-wrap">
                                     <div class="icon"><span class="ion-ios-clock"></span></div>
-                                    <input type="text" name="time" class="form-control appointment_time" placeholder="Time">
+                                    <input type="text" name="time"class="form-control appointment_time"
+                                        placeholder="Time">
                                 </div>
+                                @if ($errors->has('time'))
+                                    <p class="alert alert-success">{{ $errors->first('time') }}</p>
+                                @endif
 
-                                    <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" class="form-control appointment_time">
+                                <input type="hidden" value="{{ Auth::user()->id }}" name="user_id"
+                                    class="form-control appointment_time">
 
                             </div>
                             <div class="form-group ml-md-4">
                                 <input type="text" name="phone" class="form-control" placeholder="Phone">
                             </div>
+                            @if ($errors->has('phone'))
+                                <p class="alert alert-success">{{ $errors->first('phone') }}</p>
+                            @endif
                         </div>
                         <div class="d-md-flex">
                             <div class="form-group">
                                 <textarea id="" name="message" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
                             </div>
+                            @if ($errors->has('message'))
+                                <p class="alert alert-success">{{ $errors->first('message') }}</p>
+                            @endif
                             <div class="form-group ml-md-4">
                                 <input type="submit" name="submit" value="Book" class="btn btn-white py-3 px-4">
                             </div>

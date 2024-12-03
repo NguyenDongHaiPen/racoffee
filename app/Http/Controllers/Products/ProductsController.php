@@ -132,6 +132,16 @@ class ProductsController extends Controller
 
     public function BookTables(Request $request) {
 
+
+        Request()->validate([
+            "first_name" => "required|max:40",
+            "last_name" => "required|max:40",
+            "date" => "required",
+            "time" => "required",
+            "phone" => "required|max:40",
+            "message" => "required",
+        ]);
+
         if ($request->date > date('m/d/Y')) {
             $bookTables = Booking::create($request->all());
 
@@ -143,6 +153,21 @@ class ProductsController extends Controller
             return Redirect::route('home')->with(['date' => "We noticed the date you chose has already gone by. Please pick a valid date to continue."] );
 
         }
+    }
+
+    public function menu() {
+
+        $desserts = Product::select()->where("type", "desserts")->orderBy('id','desc')
+        ->take(4)->get();
+        $drinks = Product::select()->where("type", "drinks")->orderBy('id','desc')
+        ->take(4)->get();
+
+
+
+
+        return view('products.menu', compact('desserts','drinks'));
+
+
     }
 
 }
