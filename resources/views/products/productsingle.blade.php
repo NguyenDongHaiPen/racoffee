@@ -54,12 +54,13 @@
                         <input type="hidden" name="name" value="{{ $product->name }}">
                         <input type="hidden" name="price" value="{{ $product->price }}">
                         <input type="hidden" name="image" value="{{ $product->image }}">
-
-                        @if($checkingInCart == 0)
-                        <button type="submit" name="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
-                        @else
-                        <button style="background-color:black" class="text-white btn btn-warning py-3 px-5" disabled>Added to Cart</button>
-
+                        @if (isset(Auth::user()->id))
+                            @if ($checkingInCart == 0)
+                                <button type="submit" name="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+                            @else
+                                <button style="background-color:black" class="text-white btn btn-warning py-3 px-5"
+                                    disabled>Added to Cart</button>
+                            @endif
                         @endif
                 </div>
             </div>

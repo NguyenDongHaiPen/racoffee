@@ -2,7 +2,6 @@
 
 @section('content')
     <section class="home-slider owl-carousel">
-
         <div class="slider-item" style="background-image: url({{ asset('assets/images/bg_3.jpg') }});">
             <div class="overlay"></div>
             <div class="container">
@@ -10,7 +9,8 @@
 
                     <div class="col-md-7 col-sm-12 text-center ftco-animate">
                         <h1 class="mb-3 mt-5 bread">My Bookings</h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>My Bookings</span></p>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>My
+                                Bookings</span></p>
                     </div>
                 </div>
             </div>
@@ -31,6 +31,7 @@
                                     <th>Time</th>
                                     <th>Phone</th>
                                     <th>Status</th>
+                                    <th>Feedback</th>
                                 </tr>
                             </thead>
 
@@ -53,7 +54,14 @@
 
                                             <td class="total">{{ $booking->phone }}</td>
                                             <td class="total">{{ $booking->status }}</td>
-                                        </tr><!-- END TR-->
+                                            <td class="total">
+                                                @if ($booking->status == 'Booked')
+                                                    <a class="btn btn-primary" href="{{ route('write.reviews') }}"> Give us feedback </a>
+                                                @else
+                                                    <p>Not available </p>
+                                                @endif
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 @else
                                     <p class="alert alert-success">You have not booking any table</p>
@@ -67,5 +75,4 @@
 
         </div>
     </section>
-
 @endsection

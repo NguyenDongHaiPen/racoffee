@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product\Booking;
 use App\Models\Product\Order;
+use App\Models\Product\Review;
+use Redirect;
 use Auth;
 
 
@@ -27,4 +29,25 @@ class UsersController extends Controller
 
         return view('users.bookings', compact('bookings'));
     }
+
+    public function writeReview() {
+
+
+        return view( 'users.writereview' );
+    }
+
+    public function processWriteReview(Request $request) {
+
+        $writeReviews = Review::create([
+            "name" => Auth::user()->name,
+            "review" => $request->review,
+        ]);
+
+        if($writeReviews){
+            return Redirect::route('write.reviews')->with(['reviews' => "Thank you for your feedback! We're always working to improve and make your experience even better."] );
+
+        }
+    }
+
+
 }

@@ -111,15 +111,17 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="{{ route('products.menu') }}" class="nav-link">Menu</a></li>
-                        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="{{ route('services') }}" class="nav-link">Services</a></li>
+                        <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">About</a></li>
 
-                        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                        <li class="nav-item cart"><a href="{{ route('cart') }}" class="nav-link"><span
-                                    class="icon icon-shopping_cart"></span></a>
-                            @guest
-                                @if (Route::has('login'))
-                            <li class="nav-item"><a href="login.html" class="nav-link">login</a></li>
+                        <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+                        @if (@isset(Auth::user()->id))
+                            <li class="nav-item cart"><a href="{{ route('cart') }}" class="nav-link"><span
+                                        class="icon icon-shopping_cart"></span></a>
+                        @endif
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item"><a href="login.html" class="nav-link">login</a></li>
                             @endif
 
                             @if (Route::has('login'))
@@ -150,8 +152,7 @@
 
 
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -168,84 +169,100 @@
     </div>
 
     <footer class="ftco-footer ftco-section img">
-    	<div class="overlay"></div>
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About Us</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Recent Blog</h2>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">About Us</h2>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                            there live the blind texts.</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
+                <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Recent Blog</h2>
+                        <div class="block-21 mb-4 d-flex">
+                            <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                            <div class="text">
+                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control
+                                        about</a></h3>
+                                <div class="meta">
+                                    <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
+                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-21 mb-4 d-flex">
+                            <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
+                            <div class="text">
+                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control
+                                        about</a></h3>
+                                <div class="meta">
+                                    <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
+                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col-lg-2 col-md-6 mb-5 mb-md-5">
+                    <div class="ftco-footer-widget mb-4 ml-md-4">
+                        <h2 class="ftco-heading-2">Services</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">Cooked</a></li>
+                            <li><a href="#" class="py-2 d-block">Deliver</a></li>
+                            <li><a href="#" class="py-2 d-block">Quality Foods</a></li>
+                            <li><a href="#" class="py-2 d-block">Mixed</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Have a Questions?</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">4 Linh Trung,
+                                        Phường Linh Trung, Thành Phố Thủ Đức, Hồ Chí Minh 700000</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2
+                                            392 3929 210</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span
+                                            class="text">info@yourdomain.com</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-2 col-md-6 mb-5 mb-md-5">
-             <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Services</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Cooked</a></li>
-                <li><a href="#" class="py-2 d-block">Deliver</a></li>
-                <li><a href="#" class="py-2 d-block">Quality Foods</a></li>
-                <li><a href="#" class="py-2 d-block">Mixed</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">4 Linh Trung, Phường Linh Trung, Thành Phố Thủ Đức, Hồ Chí Minh 700000</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
+            <div class="row">
+                <div class="col-md-12 text-center">
 
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
+                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved | This template is made with <i class="icon-heart"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
     </footer>
 
-      <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4"
+                stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4"
+                stroke-miterlimit="10" stroke="#F96D00" />
+        </svg></div>
 
 
 
