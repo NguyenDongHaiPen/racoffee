@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-md-12 ftco-animate">
                     <div class="cart-list">
-                        <table class="table-dark" style="width: 1100px">
+                        <table class="table-dark" style="width: 100%">
                             <thead style="background-color: #c49b63; height:60px">
                                 <tr class="text-center">
                                     <th>&nbsp;</th>
@@ -41,14 +41,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($cartProducts->count() > 0)
+                                @if ($cartProducts->count() > 0)
                                     @foreach ($cartProducts as $cartProduct)
                                         <tr class="text-center" style="height: 140px">
-                                            <td class="product-remove"><a href="{{ route('cart.product.delete', $cartProduct->pro_id) }}"><span class="icon-close"></span></a>
+                                            <td class="product-remove"><a
+                                                    href="{{ route('cart.product.delete', $cartProduct->pro_id) }}"><span
+                                                        class="icon-close"></span></a>
                                             </td>
 
                                             <td class="image-prod">
-                                                <img width="100" height="80" src="{{ asset('assets/images/'.$cartProduct->image.'') }}"></img>
+                                                <img width="100" height="80"
+                                                    src="{{ asset('assets/images/' . $cartProduct->image . '') }}"></img>
                                             </td>
 
                                             <td class="product-name">
@@ -61,8 +64,8 @@
                                             <td>
                                                 <div class="input-group mb-3">
                                                     <input disabled type="text" name="quantity"
-                                                        class="quantity form-control input-number" value="1" min="1"
-                                                        max="100">
+                                                        class="quantity form-control input-number" value="1"
+                                                        min="1" max="100">
                                                 </div>
                                             </td>
 
@@ -70,8 +73,7 @@
                                         </tr><!-- END TR-->
                                     @endforeach
                                 @else
-
-                                <p class="alert alert-success">You have no products in cart</p>
+                                    <p class="alert alert-success">You have no products in cart</p>
                                 @endif
 
                             </tbody>
@@ -98,16 +100,17 @@
                             <span>{{ $totalPrice }} VND</span>
                         </p>
                     </div>
-                        @if($cartProducts->count() > 0)
-                            <form method="POST" action="{{ route('prepare.checkout') }}">
-                                @csrf
-                                <input name="price" type="hidden" value="{{ $totalPrice }}">
-                                <button type="submit" name="submit" class="btn btn-primary py-3 px-4">Proceed to Checkout</button>
-                            </form>
-                        @else
-
-                            <p class="text-center alert alert-success"> You cannot checkout because you have no products in cart</p>
-                        @endif
+                    @if ($cartProducts->count() > 0)
+                        <form method="POST" action="{{ route('prepare.checkout') }}">
+                            @csrf
+                            <input name="price" type="hidden" value="{{ $totalPrice }}">
+                            <button type="submit" name="submit" class="btn btn-primary py-3 px-4">Proceed to
+                                Checkout</button>
+                        </form>
+                    @else
+                        <p class="text-center alert alert-success"> You cannot checkout because you have no products in cart
+                        </p>
+                    @endif
                     </p>
                 </div>
             </div>

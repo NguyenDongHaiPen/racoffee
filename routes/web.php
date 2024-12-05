@@ -45,3 +45,8 @@ Route::post('products/booking', [App\Http\Controllers\Products\ProductsControlle
 
 //menu
 Route::get('products/menu', [App\Http\Controllers\Products\ProductsController::class, 'menu'])->name('products.menu');
+
+
+//users page
+Route::get('users/orders', [App\Http\Controllers\Users\UsersController::class, 'displayOrders'])->name('users.orders');
+Route::get('users/bookings', [App\Http\Controllers\Users\UsersController::class, 'displayBookings'])->name('users.bookings');
