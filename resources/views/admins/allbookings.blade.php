@@ -30,7 +30,7 @@
                 <th scope="col">phone</th>
                 <th scope="col">message</th>
                 <th scope="col">status</th>
-                <th scope="col">change stauts</th>
+                <th scope="col">change status</th>
 
                 <th scope="col">created_at</th>
                 <th scope="col">delete</th>
@@ -49,7 +49,7 @@
                         {{ $booking->message }}
                     </td>
                     <td>{{ $booking->status }}</td>
-                    <td><a href="{{ route('edit.booking', $booking->id) }}" class="btn btn-warning  text-white text-center ">change stauts</a></td>
+                    <td><a href="{{ route('edit.booking', $booking->id) }}" class="btn btn-warning  text-white text-center ">change status</a></td>
 
                     <td>{{ $booking->created_at }}</td>
 
