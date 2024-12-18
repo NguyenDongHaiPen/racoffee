@@ -231,8 +231,7 @@
                             <ul>
                                 <li><span class="icon icon-map-marker"></span><span class="text">4 Linh Trung,
                                         Phường Linh Trung, Thành Phố Thủ Đức, Hồ Chí Minh 700000</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2
-                                            392 3929 210</span></a></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+84 096 9000 737</span></a></li>
                                 <li><a href="#"><span class="icon icon-envelope"></span><span
                                             class="text">info@yourdomain.com</span></a></li>
                             </ul>
