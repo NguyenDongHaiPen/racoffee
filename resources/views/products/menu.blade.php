@@ -103,7 +103,7 @@
                             <div class="desc pl-3">
                                 <div class="d-flex text align-items-center">
                                     <h3><span>{{ $dessert->name }}</span></h3>
-                                    <span class="price">{{ $dessert->price }} VND</span>
+                                    <span class="price">${{ $dessert->price }}</span>
                                 </div>
                                 <div class="d-block">
                                     <p>{{ $dessert->description }}</p>
@@ -183,7 +183,7 @@
                                                                 href="{{ route('product.single', $drink->id) }}">{{ $drink->name }}</a>
                                                         </h3>
                                                         <p>{{ $drink->description }}</p>
-                                                        <p class="price"><span>{{ $drink->price }} VND</span></p>
+                                                        <p class="price"><span>${{ $drink->price }}</span></p>
                                                         <p><a href="{{ route('product.single', $drink->id) }}"
                                                                 class="btn btn-primary btn-outline-primary">Add
                                                                 to cart</a></p>
@@ -204,7 +204,7 @@
                                                     <div class="text">
                                                         <h3><a href="{{ route('product.single', $dessert->id) }}">{{ $dessert->name }}</a></h3>
                                                         <p>{{ $dessert->description }}</p>
-                                                        <p class="price"><span>{{$dessert->price}} VND</span></p>
+                                                        <p class="price"><span>${{$dessert->price}}</span></p>
                                                         <p><a href="{{ route('product.single', $dessert->id) }}"
                                                                 class="btn btn-primary btn-outline-primary">Add
                                                                 to cart</a></p>

@@ -59,7 +59,7 @@
                                                 <p>{{ $cartProduct->description }}</p>
                                             </td>
 
-                                            <td class="price">{{ $cartProduct->price }} VND</td>
+                                            <td class="price">${{ $cartProduct->price }}</td>
 
                                             <td>
                                                 <div class="input-group mb-3">
@@ -69,7 +69,7 @@
                                                 </div>
                                             </td>
 
-                                            <td class="total">{{ $cartProduct->price }} VND</td>
+                                            <td class="total">${{ $cartProduct->price }}</td>
                                         </tr><!-- END TR-->
                                     @endforeach
                                 @else
@@ -87,17 +87,17 @@
                         <h3>Cart Totals</h3>
                         <p class="d-flex">
                             <span>Subtotal</span>
-                            <span>{{ $totalPrice }} VND</span>
+                            <span>${{ $totalPrice }}</span>
                         </p>
                         <p class="d-flex">
                             <span>Delivery</span>
-                            <span>0 VND</span>
+                            <span>$0</span>
                         </p>
 
                         <hr>
                         <p class="d-flex total-price">
                             <span>Total</span>
-                            <span>{{ $totalPrice }} VND</span>
+                            <span>${{ $totalPrice }}</span>
                         </p>
                     </div>
                     @if ($cartProducts->count() > 0)

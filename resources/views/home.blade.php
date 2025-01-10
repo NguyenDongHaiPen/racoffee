@@ -335,7 +335,7 @@
                             <div class="text text-center pt-4">
                                 <h3><a href="{{ route('product.single', $product->id) }}">{{ $product->name }}</a></h3>
                                 <p>{{ $product->description }}</p>
-                                <p class="price"><span>{{ $product->price }} VND</span></p>
+                                <p class="price"><span>${{ $product->price }}</span></p>
                                 <p><a href="{{ route('product.single', $product->id) }}"
                                         class="btn btn-primary btn-outline-primary">Show</a></p>
                             </div>

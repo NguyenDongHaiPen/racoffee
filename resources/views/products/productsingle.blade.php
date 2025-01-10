@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-lg-6 product-details pl-md-5 ftco-animate">
                     <h3 class = "text-white">{{ $product->name }}</h3>
-                    <p class="price"><span>{{ $product->price }} VND</span></p>
+                    <p class="price"><span>${{ $product->price }}</span></p>
                     <p>
                         {{ $product->description }}
                     </p>
@@ -91,7 +91,7 @@
                                 <p>
                                     {{ $relatedProduct->description }}
                                 </p>
-                                <p class="price"><span>{{ $relatedProduct->price }} VND</span></p>
+                                <p class="price"><span>${{ $relatedProduct->price }}</span></p>
                                 <p><a href="{{ route('product.single', $relatedProduct->id) }}"
                                         class="btn btn-primary btn-outline-primary">Show</a></p>
                             </div>
